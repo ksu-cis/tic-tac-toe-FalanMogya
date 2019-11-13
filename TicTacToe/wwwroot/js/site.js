@@ -76,4 +76,10 @@ for (i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", onClick);
 }
 
+var cells = document.getElementsByClassName("square");
+for (i = 0; i < cells.length; i++) {
+    cells[i].addEventListener(event => {
+        form.submit();
+    });
+}
 setTurn();
