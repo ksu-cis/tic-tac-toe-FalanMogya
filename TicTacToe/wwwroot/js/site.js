@@ -3,6 +3,7 @@
 
 // Write your Javascript code.
 
+/*
 var turn = "x";
 
 function setTurn() {
@@ -83,3 +84,40 @@ for (i = 0; i < cells.length; i++) {
     });
 }
 setTurn();
+*/
+
+var dragging;
+
+var squares = document.getElementsByClassName("square");
+for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('dragenter', onDragEnter);
+    squares[i].addEventListener('dragleave', onDragLeave);
+    squares[i].addEventListener('dragstart', onDragStart);
+    squares[i].addEventListener('dragend', onDragEnd);
+}
+
+function onDragEnter(event) {
+    if (event.target.children.length > 0) return;
+    if (event.target.classList.contains("checker")) return;
+    if (event.target.classList.contains("red")) return;
+    event.preventDefault();
+
+    event.target.style.backgroundColor = "yellow";
+}
+
+function onDragStart(event) {
+    dragging = {
+        x: event.target.data-x,
+        y: event.target.data-y
+    }
+}
+
+function onDragEnd(event) {
+    console.log(dragging);
+    // do something...
+}
+
+function onDragLeave(event) {
+    event.target.style.backgroundColor = null;
+    console.log('dragleave', event);
+}
